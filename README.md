@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # social-networck
 
 
@@ -192,3 +193,6 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 >>>>>>> af6c6d9 (Initial clean commit)
+=======
+# higgsfield-backendd
+>>>>>>> cc8dbed1c497170477a7ba17d0476b226ccd82b5
