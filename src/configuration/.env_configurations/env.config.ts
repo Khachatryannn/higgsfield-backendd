@@ -15,8 +15,8 @@ export const JWT_CONFIG = Object.freeze({
 
 export const DB_CONFIG = Object.freeze({
   DATABASE_URL:
-    // process.env.DATABASE_URL || 'postgres://postgres:postgres@db:5432/test',
-    process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/test',
+    process.env.DATABASE_URL || 'postgres://postgres:postgres@db:5432/test',
+    // process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/test',
   DB_NAME: process.env.DB_NAME || 'test',
   DB_PORT: process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432,
   DB_PASSWORD: process.env.DB_PASSWORD,
