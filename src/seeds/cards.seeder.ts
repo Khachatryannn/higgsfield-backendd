@@ -281,3 +281,4 @@ export async function seedCards() {
 
   console.log('✅ Cards table seeded successfully!');
 }
+

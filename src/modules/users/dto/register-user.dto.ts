@@ -1,3 +1,4 @@
+import { Optional } from '@nestjs/common';
 import {
   IsEmail,
   IsString,
@@ -10,10 +11,12 @@ import {
 
 export class RegisterUserDto {
   @IsString()
+  @Optional()
   @MinLength(2)
   first_name: string;
 
   @IsString()
+  @Optional()
   @MinLength(2)
   last_name: string;
 
@@ -21,6 +24,7 @@ export class RegisterUserDto {
   email: string;
 
   @IsInt()
+  @Optional()
   @Min(13)
   age: number;
 
