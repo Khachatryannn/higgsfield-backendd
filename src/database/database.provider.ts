@@ -95,7 +95,8 @@ export let db: Pool;
 export async function initDb() {
   try {
     db = new Pool({
-      connectionString: DB_CONFIG.DATABASE_URL,
+      // connectionString: DB_CONFIG.DATABASE_URL,
+      connectionString: 'postgresql://postgres_db_higgsfield_user:GJQry8GR97OAe75jT46Hs0zqH0oeWWeL@dpg-d3rpt7ndiees73bub3v0-a.oregon-postgres.render.com/postgres_db_higgsfield',
       ssl: { rejectUnauthorized: false }, // ✅ Required for Render PostgreSQL
     });
 
