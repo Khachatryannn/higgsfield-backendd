@@ -7,16 +7,17 @@ import {
   MaxLength,
   Min,
   Matches,
+  IsOptional,
 } from 'class-validator';
 
 export class RegisterUserDto {
   @IsString()
-  @Optional()
+  @IsOptional()
   @MinLength(2)
   first_name: string;
 
   @IsString()
-  @Optional()
+  @IsOptional()
   @MinLength(2)
   last_name: string;
 
@@ -24,7 +25,7 @@ export class RegisterUserDto {
   email: string;
 
   @IsInt()
-  @Optional()
+  @IsOptional()
   @Min(13)
   age: number;
 
