@@ -9,15 +9,36 @@ import { DatabaseService } from 'src/database/database.service';
 export class UserRepository implements IUserRepository {
   constructor(private readonly db: DatabaseService) {}
 
-  async createUser(dto: RegisterUserDto) {
+  // async createUser(dto: RegisterUserDto) {
+  //   const rows = await this.db.query<IUserWithPassword>(
+  //     `INSERT INTO users (first_name, last_name, email, age, password)
+  //      VALUES ($1, $2, $3, $4, $5)
+  //      RETURNING id, first_name, last_name, email, age`,
+  //     [dto.first_name, dto.last_name, dto.email, dto.age, dto.password],
+  //   );
+  //   return rows[0];
+
+  
+  // }
+  async createUser(dto: RegisterUserDto) {  
+    // Inserting user into database
     const rows = await this.db.query<IUserWithPassword>(
       `INSERT INTO users (first_name, last_name, email, age, password)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING id, first_name, last_name, email, age`,
-      [dto.first_name, dto.last_name, dto.email, dto.age, dto.password],
+      [dto.first_name, dto.last_name, dto.email, dto.age],
     );
-    return rows[0];
+  
+    const user = rows[0];
+  
+    // for front success message
+    return {
+      success: true,
+      message: 'User registered successfully',
+      data: user,
+    };
   }
+  
 
   async checkUserExists(email: string): Promise<boolean> {
     return await this.db.exists(`SELECT 1 FROM users WHERE email = $1`, [
