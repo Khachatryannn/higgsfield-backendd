@@ -103,14 +103,18 @@ export async function initDb() {
     await db.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
-        first_name VARCHAR(100) NOT NULL,
-        last_name VARCHAR(100) NOT NULL,
+        first_name VARCHAR(100) ,
+        last_name VARCHAR(100),
         email VARCHAR(150) UNIQUE NOT NULL,
         age INTEGER CHECK (age >= 13),
         password VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
+    //
+    await db.query(`ALTER TABLE users ALTER COLUMN first_name DROP NOT NULL;`);
+    await db.query(`ALTER TABLE users ALTER COLUMN last_name DROP NOT NULL;`);
+
 
     await db.query(`
       CREATE TABLE IF NOT EXISTS friend_requests (
