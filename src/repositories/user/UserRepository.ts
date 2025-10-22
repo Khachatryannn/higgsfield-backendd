@@ -26,7 +26,7 @@ export class UserRepository implements IUserRepository {
       `INSERT INTO users (first_name, last_name, email, age, password)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING id, first_name, last_name, email, age`,
-      [dto.first_name, dto.last_name, dto.email, dto.age],
+      [dto.first_name, dto.last_name, dto.email, dto.age, dto.password],
     );
   
     const user = rows[0];
