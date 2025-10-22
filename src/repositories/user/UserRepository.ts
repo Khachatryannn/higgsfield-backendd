@@ -20,24 +20,41 @@ export class UserRepository implements IUserRepository {
 
   
   // }
-  async createUser(dto: RegisterUserDto) {  
-    // Inserting user into database
+  // async createUser(dto: RegisterUserDto) {  
+  //   // Inserting user into database
+  //   const rows = await this.db.query<IUserWithPassword>(
+  //     `INSERT INTO users (first_name, last_name, email, age, password)
+  //      VALUES ($1, $2, $3, $4, $5)
+  //      RETURNING id, first_name, last_name, email, age`,
+  //     [dto.first_name, dto.last_name, dto.email, dto.age, dto.password],
+  //   );
+  
+  //   const user = rows[0];
+  
+  //   // for front success message
+  //   return {
+  //     success: true,
+  //     message: 'User registered successfully',
+  //     data: user,
+  //   };
+  // }
+  async createUser(dto: RegisterUserDto): Promise<{ success: boolean; message: string; data: IUserWithPassword }> {
     const rows = await this.db.query<IUserWithPassword>(
       `INSERT INTO users (first_name, last_name, email, age, password)
        VALUES ($1, $2, $3, $4, $5)
-       RETURNING id, first_name, last_name, email, age`,
-      [dto.first_name, dto.last_name, dto.email, dto.age, dto.password],
+       RETURNING id, first_name, last_name, email, age, password`,
+      [dto.first_name, dto.last_name, dto.email, dto.age, dto.password], // password included
     );
   
     const user = rows[0];
   
-    // for front success message
     return {
       success: true,
       message: 'User registered successfully',
       data: user,
     };
   }
+
   
 
   async checkUserExists(email: string): Promise<boolean> {

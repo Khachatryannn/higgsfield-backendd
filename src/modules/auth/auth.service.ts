@@ -20,15 +20,20 @@ export class AuthService {
 
   // async signUp(data: RegisterUserDto): Promise<IUserWithPassword> {
   //   data.password = await bcrypt.hash(data.password, 10);
-  //   const isExist: boolean = await this.userRepository.checkUserExists(
-  //     data.email,
-  //   );
-  //   if (!isExist) {
-  //     return this.userRepository.createUser(data);
+  
+  //   const isExist = await this.userRepository.checkUserExists(data.email);
+  //   if (isExist) {
+  //     throw new BadRequestException('User already exists');
   //   }
-  //   throw new BadRequestException('User already exists');
+  
+  //   const result = await this.userRepository.createUser(data);
+  //   return result.data; 
   // }
-  async signUp(data: RegisterUserDto): Promise<IUserWithPassword> {
+  async signUp(data: RegisterUserDto): Promise<{
+    success: boolean;
+    message: string;
+    data: IUserWithPassword;
+  }> {
     data.password = await bcrypt.hash(data.password, 10);
   
     const isExist = await this.userRepository.checkUserExists(data.email);
@@ -37,8 +42,10 @@ export class AuthService {
     }
   
     const result = await this.userRepository.createUser(data);
-    return result.data; 
-  }
+  
+    return result;
+  }  
+  
   
 
   async signIn(loginData: LoginDto): Promise<{
