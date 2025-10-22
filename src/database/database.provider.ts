@@ -96,7 +96,7 @@ export async function initDb() {
   try {
     db = new Pool({
       connectionString: DB_CONFIG.DATABASE_URL,
-      ssl: { rejectUnauthorized: false }, // ✅ required for Render / Railway Postgres
+      ssl: { rejectUnauthorized: false }, // ✅ Required for Render PostgreSQL
     });
 
     await db.query(`
@@ -141,7 +141,7 @@ export async function initDb() {
     `);
 
     console.log('✅ Connected to PostgreSQL and tables ensured');
-  } catch (err: any) {
+  } catch (err) {
     console.error('❌ Could not connect to PostgreSQL:', err);
     process.exit(1);
   }
