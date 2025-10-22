@@ -32,14 +32,5 @@ export class RegisterUserDto {
   @IsString()
   @MinLength(6)
   @MaxLength(32)
-  @Matches(
-    // eslint-disable-next-line no-useless-escape
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};':"\\|,.<>/?]).{6,32}$/,
-    {
-      message:
-        'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character',
-    },
-  )
-  @IsOptional()
   password: string;
 }
