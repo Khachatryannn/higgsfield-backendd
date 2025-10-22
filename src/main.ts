@@ -11,7 +11,7 @@ async function bootstrap(): Promise<void> {
   const PORT: number = SERVER_CONFIG.APP_PORT || 3000;
 
   app.enableCors({
-    origin: 'http://localhost:3002',
+    origin: '*',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: [
