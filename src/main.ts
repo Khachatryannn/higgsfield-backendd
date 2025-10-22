@@ -8,7 +8,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap(): Promise<void> {
   await initDb();
   const app = await NestFactory.create(AppModule);
-  const PORT: number = SERVER_CONFIG.APP_PORT || 3000;
+  // const PORT: number = SERVER_CONFIG.APP_PORT || 3000;
+  const PORT = process.env.PORT || 3000;
+
 
   app.enableCors({
     origin: 'https://higgsfield-gevorggg.vercel.app',
@@ -41,7 +43,9 @@ async function bootstrap(): Promise<void> {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(PORT ?? 3000);
+  // await app.listen(PORT ?? 3000);
+  await app.listen(PORT);
+
 
   console.log(`Server is running at http://localhost:${PORT}`);
 }
