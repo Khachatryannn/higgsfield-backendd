@@ -18,7 +18,11 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  // async signUp(data: RegisterUserDto): Promise<IUserWithPassword> {
+  // async signUp(data: RegisterUserDto): Promise<{
+  //   success: boolean;
+  //   message: string;
+  //   data: IUserWithPassword;
+  // }> {
   //   data.password = await bcrypt.hash(data.password, 10);
   
   //   const isExist = await this.userRepository.checkUserExists(data.email);
@@ -27,25 +31,35 @@ export class AuthService {
   //   }
   
   //   const result = await this.userRepository.createUser(data);
-  //   return result.data; 
-  // }
-  async signUp(data: RegisterUserDto): Promise<{
-    success: boolean;
-    message: string;
-    data: IUserWithPassword;
-  }> {
+  
+  //   return result;
+  // }  
+  async signUp(data: RegisterUserDto) {
     data.password = await bcrypt.hash(data.password, 10);
   
     const isExist = await this.userRepository.checkUserExists(data.email);
-    if (isExist) {
-      throw new BadRequestException('User already exists');
-    }
+    if (isExist) throw new BadRequestException('User already exists');
   
-    const result = await this.userRepository.createUser(data);
+    const created = await this.userRepository.createUser(data);
   
-    return result;
-  }  
+    const accessToken = this.jwtService.generateAccessToken({
+      id: created.data.id,
+      email: created.data.email,
+    });
   
+    const refreshToken = this.jwtService.generateRefreshToken({
+      id: created.data.id,
+      email: created.data.email,
+    });
+  
+    return {
+      success: true,
+      message: 'User registered successfully',
+      token: accessToken,
+      refreshToken,
+      user: created.data,
+    };
+  }
   
 
   async signIn(loginData: LoginDto): Promise<{
