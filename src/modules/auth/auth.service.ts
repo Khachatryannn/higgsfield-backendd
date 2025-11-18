@@ -24,34 +24,34 @@ export class AuthService {
   //   data: IUserWithPassword;
   // }> {
   //   data.password = await bcrypt.hash(data.password, 10);
-  
+
   //   const isExist = await this.userRepository.checkUserExists(data.email);
   //   if (isExist) {
   //     throw new BadRequestException('User already exists');
   //   }
-  
+
   //   const result = await this.userRepository.createUser(data);
-  
+
   //   return result;
-  // }  
+  // }
   async signUp(data: RegisterUserDto) {
     data.password = await bcrypt.hash(data.password, 10);
-  
+
     const isExist = await this.userRepository.checkUserExists(data.email);
     if (isExist) throw new BadRequestException('User already exists');
-  
+
     const created = await this.userRepository.createUser(data);
-  
+
     const accessToken = this.jwtService.generateAccessToken({
       id: created.data.id,
       email: created.data.email,
     });
-  
+
     const refreshToken = this.jwtService.generateRefreshToken({
       id: created.data.id,
       email: created.data.email,
     });
-  
+
     return {
       success: true,
       message: 'User registered successfully',
@@ -60,7 +60,6 @@ export class AuthService {
       user: created.data,
     };
   }
-  
 
   async signIn(loginData: LoginDto): Promise<{
     accessToken: string;

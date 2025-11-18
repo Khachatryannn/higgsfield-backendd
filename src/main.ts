@@ -44,7 +44,6 @@ async function bootstrap(): Promise<void> {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(PORT ?? 3000);
-  // await app.listen(PORT);
 
 
   console.log(`Server is running at http://localhost:${PORT}`);
