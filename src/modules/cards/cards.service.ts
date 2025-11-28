@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { db } from 'src/database/database.provider';
 import { CardsRepository } from 'src/repositories/card/card.repository';
 import { communityGridData } from 'src/seeds/cards.seeder';
 import { CreateCardDto } from './dto/create-card.dto';
