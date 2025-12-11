@@ -245,22 +245,36 @@ export const communityGridData = [
     id: 49,
     autoplay: true,
     videoImageSrc: 'https://dqv0cqkoy5oj7.cloudfront.net/user_2ueruohX36A3Cp5WPFgZB4QsokZ/7127a7f1-2482-4233-8233-a7450aeac2e6_min.mp4',
+  },
+  {
+    id: 50,
+    autoplay: true,
+    videoImageSrc: 'https://cdn.higgsfield.ai/user_2v99SrPEzc8t4hnufGnTC18e3tA/def89168-9b6d-4233-94ee-928636834e90_min.mp4',
+  },
+  {
+    id: 51,
+    autoplay: true,
+    videoImageSrc: 'https://cdn.higgsfield.ai/user_2v99SrPEzc8t4hnufGnTC18e3tA/a94ad022-2b65-4542-97e6-586fba1f780f_min.mp4',
   }
 ];
 
 export async function seedCards() {
   if (!db) throw new Error('DB not initialized');
 
+  // Batch insert
+  const values = communityGridData
+    .map((c) => `(${c.id}, '${c.videoImageSrc}', ${c.autoplay})`)
+    .join(',');
 
-  for (const card of communityGridData) {
-    await db.query(
-      `INSERT INTO cards (id, video_image_src, autoplay) VALUES ($1, $2, $3)
-       ON CONFLICT (id) DO NOTHING 
-       `,
-      [card.id, card.videoImageSrc, card.autoplay],
-    );
-  }
+  const sql = `
+    INSERT INTO cards (id, video_image_src, autoplay) VALUES
+    ${values}
+    ON CONFLICT (id) DO NOTHING;
+  `;
 
-  console.log('✅ Cards table seeded successfully!');
+  await db.query(sql);
 }
+
+
+ 
 
