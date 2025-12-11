@@ -8,8 +8,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap(): Promise<void> {
   await initDb();
   const app = await NestFactory.create(AppModule);
-  const PORT: number = SERVER_CONFIG.APP_PORT || 3000;
-  // const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || SERVER_CONFIG.APP_PORT || 3000;
+  // const PORT: number = SERVER_CONFIG.APP_PORT || 3000;
 
 
   app.enableCors({
