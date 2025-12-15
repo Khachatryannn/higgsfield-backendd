@@ -14,17 +14,6 @@ export const JWT_CONFIG = Object.freeze({
 });
 
 export const DB_CONFIG = Object.freeze({
-  DATABASE_URL: process.env.DATABASE_URL || 'postgresql://postgres_db_higgsfield_user:GJQry8GR97OAe75jT46Hs0zqH0oeWWeL@dpg-d3rpt7ndiees73bub3v0-a.oregon-postgres.render.com/postgres_db_higgsfield',
-  // DB_NAME: process.env.DB_NAME || 'test',
-  // DB_PORT: process.env.DB_PORT ? Number(process.env.DB_PORT) : 5432,
-  // DB_PASSWORD: process.env.DB_PASSWORD,
-  // DB_HOST: process.env.DB_HOST,
+  DATABASE_URL: process.env.DATABASE_URL,
 
-  // DB_DEFAULT_PASSWORD: process.env.DB_DEFAULT_PASSWORD,
-  // DB_DEFAULT_USER_NAME: process.env.DB_DEFAULT_USER_NAME,
-  // DB_DEFAULT_NAME: process.env.DB_DEFAULT_NAME,
-  // DB_DEFAULT_PORT: process.env.DB_DEFAULT_PORT
-  //   ? Number(process.env.DB_DEFAULT_PORT)
-  //   : 5432,
-  // DB_DEFAULT_HOST: process.env.DB_DEFAULT_HOST,
 });
