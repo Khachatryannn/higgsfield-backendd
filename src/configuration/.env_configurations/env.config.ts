@@ -16,5 +16,4 @@ export const JWT_CONFIG = Object.freeze({
 
 export const DB_CONFIG = Object.freeze({
   DATABASE_URL: process.env.DATABASE_URL,
-
 });
