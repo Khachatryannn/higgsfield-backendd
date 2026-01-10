@@ -4,7 +4,6 @@ export let db: Pool;
 
 export async function initDb() {
   try {
-    // Only use DATABASE_URL with SSL for Render
     db = new Pool({
       connectionString: process.env.DATABASE_URL,
       ssl: {
