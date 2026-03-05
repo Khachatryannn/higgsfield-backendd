@@ -256,8 +256,6 @@ export const communityGridData = [
     autoplay: true,
     videoImageSrc: 'https://cdn.higgsfield.ai/user_2v99SrPEzc8t4hnufGnTC18e3tA/a94ad022-2b65-4542-97e6-586fba1f780f_min.mp4',
   },
-  
-  
 ];
 
 export async function seedCards() {
