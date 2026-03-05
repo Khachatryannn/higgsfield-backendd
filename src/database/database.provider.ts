@@ -53,7 +53,6 @@ export async function initDb() {
       CREATE TABLE IF NOT EXISTS cards (
         id SERIAL PRIMARY KEY,
         video_image_src TEXT NOT NULL,
-        autoplay BOOLEAN DEFAULT false,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);

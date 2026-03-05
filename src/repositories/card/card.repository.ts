@@ -6,13 +6,13 @@ import { CreateCardDto } from 'src/modules/cards/dto/create-card.dto';
 export class CardsRepository {
   
   async insertCard(createCardDto: CreateCardDto) {
-    const { id, videoImageSrc, autoplay } = createCardDto;
+    const { id, videoImageSrc } = createCardDto;
     const result = await db.query(
-      `INSERT INTO cards (id, video_image_src, autoplay)
+      `INSERT INTO cards (id, video_image_src)
        VALUES ($1, $2, $3)
        ON CONFLICT (id) DO NOTHING
        RETURNING *`,
-      [id, videoImageSrc, autoplay],
+      [id, videoImageSrc],
     );
     return result.rows[0];
   }
@@ -22,7 +22,6 @@ export class CardsRepository {
     return result.rows.map(row => ({
       id: row.id,
       videoImageSrc: row.video_image_src,
-      autoplay: row.autoplay,
     }));
   }
 

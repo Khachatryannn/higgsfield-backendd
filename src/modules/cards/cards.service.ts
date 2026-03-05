@@ -13,7 +13,6 @@ export class CardsService {
       const cardDto: CreateCardDto = {
         id: card.id,
         videoImageSrc: card.videoImageSrc,
-        autoplay: card.autoplay,
       };
       await this.cardsRepository.insertCard(cardDto);
     }
