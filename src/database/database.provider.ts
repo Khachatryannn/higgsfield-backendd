@@ -57,7 +57,7 @@ export async function initDb() {
       );
     `);
 
-    console.log('✅ Connected to PostgreSQL and tables ensured');
+    console.log('Connected to PostgreSQL and tables ensured ✅ ');
   } catch (err) {
     console.error('❌ Could not connect to PostgreSQL:', err);
     process.exit(1);
